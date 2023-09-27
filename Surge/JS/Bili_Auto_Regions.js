@@ -82,6 +82,7 @@ async function SwitchRegion(title, url, body) {
 	const HK = $.read('🇭🇰Hong Kong') || '🇭🇰 sub-policy'; //Your HongKong sub-policy name.
 	const DF = $.read('BiliArea_DF') || '🏁 sub-policy'; //Sub-policy name used after region is blocked(e.g. url 404)
 	const off = $.read('BiliArea_disabled') || ''; //WiFi blacklist(disable region change), separated by commas.
+	$.notify(title || '', ``, `Group: ${Group}`);
 	const current = await $.getPolicy(Group);
 	const area = (() => {
 		let select = {};
