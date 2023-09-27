@@ -77,7 +77,7 @@ let run = EnvInfo();
 
 async function SwitchRegion(title, url, body) {
 	const Group = $.read('Bilibili') || 'Bilibili'; //Your blibli policy group name.
-	const CN = $.read('BiliArea_CN') || 'DIRECT'; //Your China sub-policy name.
+	const CN = $.read('DIRECT') || 'DIRECT'; //Your China sub-policy name.
 	const TW = $.read('🇨🇳Taiwan') || '🇹🇼 🇨🇳Taiwan'; //Your Taiwan sub-policy name.
 	const HK = $.read('🇭🇰Hong Kong') || '🇭🇰Hong Kong'; //Your HongKong sub-policy name.
 	const DF = $.read('BiliArea_DF') || '🏁 sub-policy'; //Sub-policy name used after region is blocked(e.g. url 404)
@@ -88,6 +88,7 @@ async function SwitchRegion(title, url, body) {
 	const area = (() => {
 		let select = {};
 		let chtMatch = title && title.split('').some(v => zhHans().includes(v));
+		$.notify(title || '', ``, `chtMatch: ${chtMatch}`);
 		if (/\u6e2f[\u4e00-\u9fa5]+\u5340|%20%E6%B8%AF&/.test(title || url)) {
 			const test = /\u53f0[\u4e00-\u9fa5]+\u5340/.test(title);
 			if (current != HK && (current == TW && test ? 0 : 1))
@@ -102,6 +103,7 @@ async function SwitchRegion(title, url, body) {
 		if ($.isQuanX && current === 'direct' && select.policy === 'DIRECT') {
 			select = {}; //prevent loopback in some cases
 		}
+		$.notify(title || '', ``, `select: ${select}`);
 		return select;
 	})()
 
