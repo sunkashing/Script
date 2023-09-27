@@ -85,6 +85,7 @@ async function SwitchRegion(title, url, body) {
 	$.notify(title || '', ``, `Group: ${Group}`);
 	const current = await $.getPolicy(Group);
 	$.notify(title || '', ``, `Current: ${current}`);
+	$.notify(title || '', ``, `title: ${title}`);
 	const area = (() => {
 		let select = {};
 		let chtMatch = title && title.split('').some(v => zhHans().includes(v));
